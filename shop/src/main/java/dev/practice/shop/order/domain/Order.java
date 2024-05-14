@@ -16,7 +16,7 @@ public class Order {
      *
      *
      * 해당 코드는 주문 도메인의 기능을 도메인 모델 패턴으로 구현한 코드이다.
-     * 주문과 관련된 핵심 비즈니스 규칙을 주문 도메인 모델인 Order 로 구현하고 있다.
+     * 주문과 관련된 핵심 비즈니스 규칙[BIZ] 을 주문 도메인 모델인 Order 로 구현하고 있다.
      *  "결제 대기중, 상품 준비중 상태에서는 배송지 정보를 변경할 수 있다." 를 Order(도메인 모델) 에서 구현하였다.
      *  핵심 비즈니스 규칙은 도메인 모델에만 존재하도록하면 규칙이 변경되거나 확장될 때, 다른 코드에 영향을 최소화 할 수 있다.
      *
@@ -35,7 +35,7 @@ public class Order {
 
     private boolean isShippingChangeable() {
         // 핵심 비즈니스 규칙을 주문 도메인 모델(Order) 에서 구현하였다.
-        // 결제 대기중, 상품 준비중 상태에서는 배송지 정보를 변경할 수 있다.
+        // [BIZ] 결제 대기중, 상품 준비중 상태에서는 배송지 정보를 변경할 수 있다.
         return state == OrderState.PAYMENT_WAITING
                 || state == OrderState.PREPARING;
     }
