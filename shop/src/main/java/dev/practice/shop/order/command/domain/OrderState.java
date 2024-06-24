@@ -1,4 +1,4 @@
-package dev.practice.shop.order.domain;
+package dev.practice.shop.order.command.domain;
 
 public enum OrderState {
 
