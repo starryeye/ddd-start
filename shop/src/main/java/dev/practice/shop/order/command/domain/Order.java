@@ -1,5 +1,6 @@
 package dev.practice.shop.order.command.domain;
 
+import dev.practice.shop.common.jpa.MoneyConverter;
 import dev.practice.shop.common.model.Money;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Entity
@@ -19,8 +21,12 @@ public class Order {
     @Embedded
     private Orderer orderer; // 주문자
 
+    @ElementCollection(fetch = FetchType.LAZY) // 값 컬렉션
+    @CollectionTable(joinColumns = @JoinColumn(name = "order_number")) // 값 테이블 join 정보
+    @OrderColumn(name = "line_idx") // todo
     private List<OrderLine> orderLines; // 주문 목록
 
+    @Convert(converter = MoneyConverter.class) // todo
     private Money totalAmounts; // 총 금액
 
     @Embedded
